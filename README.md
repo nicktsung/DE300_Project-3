@@ -1,5 +1,18 @@
 # DE300_Project-3
 
+## Setup
+
+### S3 Bucket
+1. Create an S3 bucket.
+2. Upload requirements.txt and heart_disease.csv.
+3. Add a /dags folder.  
+4. Upload workflow.py to be inside the /dags folder.
+
+### MWAA
+Steps from the class tutorial were followed to create Airflow environment.  Just be sure to include the right bucket folder, dags folder, and requirements file path.
+
+## General Approach and Rationale
+
 ### Task 1: Web scraping  
 
 The goal here is to combine all of the data to merge with the other two modules' datasets.
@@ -37,6 +50,7 @@ As we can see, the smoking rates for both sexes heavily increased from the upsca
 The final panda DataFrame only included the age group and adjusted smoking rates.
 
 ### Task 2: Workflow orchestration of EDA and EDA with spark
+Converting the previous two modules to be compatible was relatively simple.  All that had to be done was to partition the code into individual tasks (cleaning, feature engineering, and modelling), then have dataframes saved as .csv files in between tasks, and finally make sure everything in the workflow works as intended.
 
 ### Task 3: Combining with smoking data
 

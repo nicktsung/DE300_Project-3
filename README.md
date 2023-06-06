@@ -11,7 +11,7 @@
 5. Change bucket_name in workflow.py to match newly created bucket.
 
 ### MWAA
-Steps from the class tutorial were followed to create Airflow environment. Just be sure to include the right bucket folder, dags folder, and requirements file path.  Also use mw1.medium instead of mw1.small with 25 workers since we encountered memory issues.
+Steps from the class tutorial were followed to create Airflow environment with some minor changes. Used mw1.medium instead of mw1.small with 25 workers since we encountered memory issues and enabled all INFO log groups.  Just be sure to include the right bucket folder, dags folder, and requirements file path.  
 
 ## Build and Run
 Go to Airflow UI and trigger the DAG for workflow.py.  Tasks should run and output can be found in the task logs.

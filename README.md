@@ -7,9 +7,10 @@
 2. Upload requirements.txt and heart_disease.csv.
 3. Add a /dags folder.  
 4. Upload workflow.py to be inside the /dags folder.
+5. Change bucket_name in workflow.py to match newly created bucket.
 
 ### MWAA
-Steps from the class tutorial were followed to create Airflow environment.  Just be sure to include the right bucket folder, dags folder, and requirements file path.
+Steps from the class tutorial were followed to create Airflow environment. Just be sure to include the right bucket folder, dags folder, and requirements file path.  Also use medium instead of small with 25 workers.
 
 ## General Approach and Rationale
 

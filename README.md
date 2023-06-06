@@ -1,3 +1,4 @@
+
 # DE300_Project-3
 
 ## Setup
@@ -10,7 +11,10 @@
 5. Change bucket_name in workflow.py to match newly created bucket.
 
 ### MWAA
-Steps from the class tutorial were followed to create Airflow environment. Just be sure to include the right bucket folder, dags folder, and requirements file path.  Also use medium instead of small with 25 workers.
+Steps from the class tutorial were followed to create Airflow environment. Just be sure to include the right bucket folder, dags folder, and requirements file path.  Also use mw1.medium instead of mw1.small with 25 workers since we encountered memory issues.
+
+## Build and Run
+Go to Airflow UI and trigger the DAG for workflow.py.  Tasks should run and output can be found in the task logs.
 
 ## General Approach and Rationale
 
@@ -109,3 +113,6 @@ Module 2 clearly has the least accurate models overall compared to the other two
 
 While the 10 fold cross validation between the merged and module 1 models are all comparable. The SVM has the best test split f1 score. This is likely due to the inclusion of the cleaning/imputation methods from module 2 and the new smoke column in module 3. 
 Also, linear SVMs are just about as interpretable as logistic regression models.
+
+### Findings
+The findings can be found in the task logs in the last log group.  For our run, we found the best model to be sklearn svm with F1 Score: 0.8472906403940887.  Predictions can also be found in log group.

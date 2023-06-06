@@ -20,3 +20,12 @@ First combine the rates by age group from the first two sources, by averaging ra
 Furthermore, we'll multiply the rates by some ratio 1/ln(e + i/r), where i is the index for each age group (18-24 being index 0) and r is some chosen parameter. Including e allows the function to be 1 when i is 0. As i increases, the ratio decreases so that older age groups are not as affected by the upscaling. Including r allows us to toggle how much the ratio decreases as i gets larger; higher values of r make it so that i has less of an effect.
 
 Again, this isn't a perfect way to do this, but with the lack of the necessary information to have the most unbiased imputation of the smoke column, this isn't a bad solution.
+
+	age_group	smoking_rate	smoking_rate_male	smoking_rate_female	smoking_rate_male_adjusted	smoking_rate_female_adjusted
+0	18–24	0.0680	0.264594	0.2040	0.264594	0.204000
+1	25–34	0.1160	0.451366	0.3480	0.380591	0.293432
+2	35–44	0.1215	0.472767	0.3645	0.352100	0.271467
+3	45–54	0.1425	0.554480	0.4275	0.375111	0.289207
+4	55–64	0.1430	0.556426	0.4290	0.348317	0.268550
+5	65–74	0.0860	0.334634	0.2580	0.196378	0.151406
+6	75+	0.0585	0.227629	0.1755	0.126438	0.097482

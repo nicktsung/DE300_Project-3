@@ -72,3 +72,40 @@ The first module's method of just replacing the missing values with a new missin
 As for the smoke columns, these were left out of the first module for the amount of missing values. In the second module, we used data scraped online to impute the missing values. The first source only used the age group, while the second included patient's sex as well. As talked about in the webscraping section of this module, the dataset is from 1998, so the data we scraped in module 2 is long after the time of our dataset. In turn, we scraped some data from the new source given to us in this module to try to scale the smoking rates to more accurately represent what they might have been in that time.
 
 We don't want 3 entire columns dedicated to imputed smoke values as this is redundant. We'll keep the imputed values from source 2 as they provide more information and not use column from source 1. Then we'll include a new imputed smoke column which uses the new smoking rates we calculated from combining the three sources' information. See that calculation in task 1.
+
+### Model Results
+We'll test each model by calculating its f1 score on prediction data. F1 score is a good metric as it seeks to strike a balance between precision and recall.
+
+Module 1:
+
+SVM, C=0.1, kernel='linear'  
+10-fold CV Average F1 score: 0.814  
+train_test_split F1 score: 0.859
+
+Logistic Regression, penalty = 'l2', C = 0.1
+10-fold CV Average F1 score: 0.816
+train_test_split F1 score: 0.832
+
+Module 2:
+
+SVM, C = 0.1, kernel = 'linear'
+train_test_split F1 score: 0.749
+
+Logistic Regression, penalty = 'l2', C = 0.01
+train_test_split F1 score: 0.771
+
+Merged models:
+
+SVM, C=0.1, kernel='linear'  
+10-fold CV Average F1 score: 0.819  
+train_test_split F1 score: 0.873
+
+Logistic Regression, penalty = 'l2', solver = 'lbfgs', C = 0.1
+10-fold CV Average F1 score: 0.820
+train_test_split F1 score: 0.846
+
+
+Module 2 clearly has the least accurate models overall compared to the other two modules. This is likely because it has much less variables, so much less information. Also, the imputation methods were not as robust. Module 1 and the Merged Models are comparable, but the merged model take the cake overall.
+
+While the 10 fold cross validation between the merged and module 1 models are all comparable. The SVM has the best test split f1 score. This is likely due to the inclusion of the cleaning/imputation methods from module 2 and the new smoke column in module 3. 
+Also, linear SVMs are just about as interpretable as logistic regression models.

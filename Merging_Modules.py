@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[11]:
 
 
 import pandas as pd
@@ -23,7 +23,7 @@ import scipy.stats
 from sklearn.model_selection import cross_val_score
 
 
-# In[66]:
+# In[12]:
 
 
 # read in the data
@@ -33,7 +33,7 @@ df_module2 = pd.read_csv('spark_df.csv', index_col = 0)
 smoking_rates = pd.read_csv('smoking_rates.csv', index_col = 0)
 
 
-# In[67]:
+# In[13]:
 
 
 print(list(df_module1.columns), '\n')
@@ -57,7 +57,19 @@ print(list(df_module2.columns))
 # 
 # We don't want 3 entire columns dedicated to imputed smoke values as this is redundant. We'll keep the imputed values from source 2 as they provide more information and not use column from source 1. Then we'll include a new imputed smoke column which uses the new smoking rates we calculated from combining the three sources' information.
 
-# In[83]:
+# In[14]:
+
+
+import numpy as np
+
+# replace oldpeak values less than 0 with 0 and values greater than 4 with 4
+df_module1['oldpeak'] = np.clip(df_module1['oldpeak'], 0, 4)
+
+# replace trestbps values under 100 with 100
+df_module1.loc[df_module1['trestbps'] < 100, 'trestbps'] = 100
+
+
+# In[15]:
 
 
 # add the imputed smoke column to the df
@@ -68,13 +80,13 @@ df_module1['smoke'] = heart['smoke']
 df_module1['smoke'] = df_module1['smoke'].fillna(1000)
 
 
-# In[69]:
+# In[16]:
 
 
 smoking_rates
 
 
-# In[88]:
+# In[17]:
 
 
 keys = list(smoking_rates['age_group'])
@@ -118,7 +130,7 @@ def get_smoking_rate(x):
         
 
 
-# In[90]:
+# In[18]:
 
 
 # apply to new function to get a new imputed smoke column
@@ -126,7 +138,7 @@ df_module1['smoke_new_imputed'] = df_module1[['smoke', 'age', 'sex']].apply(get_
 df_module1 = df_module1.drop('smoke', axis = 1)
 
 
-# In[95]:
+# In[19]:
 
 
 df_module1['smoke_new_imputed']
@@ -136,7 +148,7 @@ df_module1['smoke_new_imputed']
 # 
 # The only columns from module 2 which provided completely new information were the imputed smoke columns, and with a new imputed column needed to included the data from the new web source in this module, it would have been redundant to keep both.
 
-# In[97]:
+# In[21]:
 
 
 df_module1.to_csv('merged_dataset.csv')

@@ -1,6 +1,7 @@
 # DE300_Project-3
 
-Task 1: Web scraping  
+### Task 1: Web scraping  
+
 The goal here is to combine all of the data to merge with the other two modules' datasets.
 
 Across the three sources, we have smoking rates based on people's sex, age, race, region, state, education, income, mental health status, and health insurance.
